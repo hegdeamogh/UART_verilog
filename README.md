@@ -32,16 +32,6 @@ uart-verilog/
 
 ---
 
-## Frame Format
-
-```
-Idle   Start   D0   D1   D2   D3   D4   D5   D6   D7   Stop   Idle
- ____   ____                                              ____   ____
-|    | |    | | LSB  .    .    .    .    .    .  MSB | |    | |    |
-|  1 |_|  0 |_|__________________________________|_1_|_|  1 | |  1 |
-```
-
----
 
 ## Parameters
 
@@ -59,65 +49,6 @@ Idle   Start   D0   D1   D2   D3   D4   D5   D6   D7   Stop   Idle
 
 ---
 
-## Simulation
-
-### Icarus Verilog (free, command-line)
-
-```bash
-# Compile
-iverilog -o sim/uart_sim \
-    tb/tb_uart_loopback.v \
-    rtl/uart_tx.v \
-    rtl/uart_rx.v
-
-# Run
-vvp sim/uart_sim
-
-# View waveform
-gtkwave uart_loopback.vcd
-```
-
-### Xilinx Vivado
-
-1. Create a new RTL project
-2. Add `rtl/*.v` as design sources
-3. Add `tb/tb_uart_loopback.v` as simulation source
-4. Set `tb_uart_loopback` as the top simulation module
-5. Run Behavioral Simulation
-
-### ModelSim / Questa
-
-```tcl
-vlib work
-vlog rtl/uart_tx.v rtl/uart_rx.v tb/tb_uart_loopback.v
-vsim tb_uart_loopback
-run -all
-```
-
----
-
-## Expected Simulation Output
-
-```
-========================================
-  UART 8-N-1 Loopback Testbench
-  CLK: 100 MHz | Baud: 115200 | CLKS_PER_BIT: 868
-========================================
-[PASS] Sent: 0x55 | Received: 0x55
-[PASS] Sent: 0xAA | Received: 0xAA
-[PASS] Sent: 0xFF | Received: 0xFF
-[PASS] Sent: 0x00 | Received: 0x00
-[PASS] Sent: 0x41 | Received: 0x41
-[PASS] Sent: 0x5A | Received: 0x5A
-[PASS] Sent: 0x0F | Received: 0x0F
-[PASS] Sent: 0xA3 | Received: 0xA3
-========================================
-  Results: 8 PASSED, 0 FAILED
-  ALL TESTS PASSED
-========================================
-```
-
----
 
 ## Design Notes
 
