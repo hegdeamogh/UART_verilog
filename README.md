@@ -16,40 +16,6 @@ A fully synthesisable, parameterised **UART (Universal Asynchronous Receiver-Tra
 
 ---
 
-## Repository Structure
-
-```
-uart-verilog/
-├── rtl/
-│   ├── uart_tx.v        # UART Transmitter
-│   ├── uart_rx.v        # UART Receiver
-│   └── uart_top.v       # Top-level wrapper (TX + RX)
-├── tb/
-│   └── tb_uart_loopback.v  # Self-checking loopback testbench
-├── sim/                 # (generated) VCD waveform output
-└── README.md
-```
-
----
-
-
-## Parameters
-
-| Parameter     | Default | Description                                      |
-|---------------|---------|--------------------------------------------------|
-| `CLKS_PER_BIT`| `868`   | Clock cycles per bit = `f_clk / baud_rate`       |
-
-**Example configurations:**
-
-| System Clock | Baud Rate | `CLKS_PER_BIT` |
-|-------------|-----------|----------------|
-| 100 MHz     | 115200    | 868            |
-| 50 MHz      | 9600      | 5208           |
-| 25 MHz      | 115200    | 217            |
-
----
-
-
 ## Design Notes
 
 **Transmitter FSM:** `IDLE → START_BIT → DATA_BITS → STOP_BIT → CLEANUP`
@@ -76,17 +42,3 @@ uart-verilog/
 | Icarus Verilog  | Open-source simulation         |
 
 ---
-
-## Skills Demonstrated
-
-- RTL design and FSM-based digital hardware description in Verilog HDL
-- Baud rate clock domain management and parameterised design
-- Synchronous reset conventions and metastability mitigation
-- Cycle-accurate testbench development with automated pass/fail checking
-- FPGA synthesis readiness (Xilinx Vivado)
-
----
-
-## License
-
-MIT License — free to use, modify, and distribute with attribution.
