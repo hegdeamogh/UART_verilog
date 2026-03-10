@@ -1,22 +1,3 @@
-// =============================================================================
-// Module      : uart_rx
-// Description : UART Receiver - 8-N-1 frame format
-//               Samples the serial line at the center of each bit period.
-//               Detects start bit, receives 8 data bits LSB first, validates
-//               stop bit.
-//
-// Parameters  :
-//   CLKS_PER_BIT = (system_clk_freq) / (baud_rate)
-//   Must match uart_tx parameter exactly.
-//
-// Interface   :
-//   i_clk       - System clock
-//   i_rst_n     - Active-low synchronous reset
-//   i_rx_serial - Serial input line (idle HIGH)
-//   o_rx_byte   - 8-bit received data (valid when o_rx_done pulses)
-//   o_rx_done   - Pulses HIGH for one cycle when a full frame is received
-//   o_rx_active - HIGH while reception is in progress
-// =============================================================================
 
 module uart_rx #(
     parameter CLKS_PER_BIT = 868
