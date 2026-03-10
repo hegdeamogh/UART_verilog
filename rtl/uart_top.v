@@ -1,11 +1,3 @@
-// =============================================================================
-// Module      : uart_top
-// Description : Top-level wrapper connecting uart_tx and uart_rx.
-//               Internally connects TX serial output to RX serial input,
-//               forming a loopback path for self-test.
-//               Instantiate this in your design or testbench top level.
-// =============================================================================
-
 module uart_top #(
     parameter CLKS_PER_BIT = 868   // 100 MHz / 115200 baud
 )(
