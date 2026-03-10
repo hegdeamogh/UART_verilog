@@ -1,6 +1,6 @@
-# UART Transmitter & Receiver — Verilog HDL
+# UART Transmitter & Receiver
 
-A fully synthesisable, parameterised **UART (Universal Asynchronous Receiver-Transmitter)** implementation in Verilog HDL, supporting the standard **8-N-1** frame format (8 data bits, no parity, 1 stop bit). Verified through a cycle-accurate, self-checking loopback testbench.
+A fully synthesisable, parameterised **UART (Universal Asynchronous Receiver-Transmitter)** implementation in Verilog, supporting the standard **8-N-1** frame format (8 data bits, no parity, 1 stop bit). Verified through a cycle-accurate, self-checking loopback testbench.
 
 ---
 
@@ -16,21 +16,6 @@ A fully synthesisable, parameterised **UART (Universal Asynchronous Receiver-Tra
 
 ---
 
-## Design Notes
-
-**Transmitter FSM:** `IDLE → START_BIT → DATA_BITS → STOP_BIT → CLEANUP`
-
-- Loads the 8-bit word on `i_tx_valid` assertion
-- Shifts out bits LSB-first, each held for exactly `CLKS_PER_BIT` cycles
-- Pulses `o_tx_done` for one clock cycle after the stop bit
-
-**Receiver FSM:** `IDLE → START_BIT → DATA_BITS → STOP_BIT → CLEANUP`
-
-- Detects falling edge (start condition) on the synchronised RX line
-- Waits `CLKS_PER_BIT/2` cycles to align to mid-bit, then samples every `CLKS_PER_BIT` cycles
-- Validates that the stop bit is HIGH before asserting `o_rx_done`
-
----
 
 ## Tools Used
 
