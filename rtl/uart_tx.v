@@ -1,22 +1,3 @@
-// =============================================================================
-// Module      : uart_tx
-// Description : UART Transmitter - 8-N-1 frame format
-//               Transmits 8 data bits, no parity, 1 stop bit.
-//               Baud rate is derived from clk using CLKS_PER_BIT parameter.
-//
-// Parameters  :
-//   CLKS_PER_BIT = (system_clk_freq) / (baud_rate)
-//   e.g. 100 MHz clk, 115200 baud -> CLKS_PER_BIT = 868
-//
-// Interface   :
-//   i_clk       - System clock
-//   i_rst_n     - Active-low synchronous reset
-//   i_tx_valid  - Assert for one cycle to load data and begin transmission
-//   i_tx_byte   - 8-bit data to transmit
-//   o_tx_serial - Serial output line (idle HIGH)
-//   o_tx_done   - Pulses HIGH for one cycle when frame is complete
-//   o_tx_active - HIGH while transmission is in progress
-// =============================================================================
 
 module uart_tx #(
     parameter CLKS_PER_BIT = 868
